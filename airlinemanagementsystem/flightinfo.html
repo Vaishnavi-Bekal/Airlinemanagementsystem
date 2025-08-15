@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Details</title>
+    <link rel="stylesheet" href="flightinfo.css">
+    <script src="flightdetails.js" defer></script>
+</head>
+<body>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f8ff;
+}
+
+.navbar {
+    background-color: #0f4c81;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.details-panel {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h2 {
+    color: #0f4c81;
+    margin-bottom: 20px;
+}
+
+.flight-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.flight-table th, .flight-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.flight-table th {
+    background-color: #0f4c81;
+    color: white;
+}
+
+.flight-table tbody tr:hover {
+    background-color: #f0f8ff;
+}
+
+.book-btn {
+    /* Button Styles */
+    background: linear-gradient(135deg, #0066cc, #80c8ff); /* Gradient Background */
+    color: #ffffff; /* Text color */
+    font-size: 18px; /* Larger text */
+    font-weight: bold; /* Emphasize the text */
+    padding: 12px 25px; /* Comfortable size */
+    border: none; /* Remove border */
+    border-radius: 25px; /* Rounded corners for a pill-shaped design */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.4s ease-in-out; /* Smooth transition */
+    cursor: pointer; /* Pointer effect on hover */
+  }
+  
+  .book-btn:hover {
+    /* Hover Effects */
+    background: linear-gradient(135deg, #004080, #0066cc); /* Darker gradient */
+    transform: scale(1.2); /* Slight enlargement */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+  }
+  
+  .book-btn:active {
+    /* Active (pressed) State */
+    background: linear-gradient(135deg, #003366, #004080); /* More prominent darker gradient */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Reduce shadow for pressed state */
+    transform: scale(1.1); /* Slight shrink for click effect */
+  }
+    </style>
+    <header class="navbar">
+        <div class="logo">Sky way Airlines</div>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+           
+        </ul>
+    </header>
+    <main>
+        <section class="details-panel">
+            <h2>Flight Details</h2>
+            <table class="flight-table">
+                <thead>
+                    <tr>
+                        <th>Flight Number</th>
+                        <th>Source</th>
+                        <th>Destination</th>
+                        <th>Remaining Seats</th>
+                        <th>Book Seats</th>
+                    </tr>
+                </thead>
+                <tbody id="flight-data">
+                    <!-- Flight details will be dynamically populated here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Skyway Airlines. All rights reserved.</p>
+    </footer>
+</body>
+<script>
+    // Array of flight details
+const flightDetails = [
+    { number: "AI123", source: "Delhi", destination: "Mumbai", seats: 25 },
+    { number: "AI456", source: "Mumbai", destination: "Chennai", seats: 15 },
+    { number: "AI789", source: "Bangalore", destination: "Kolkata", seats: 30 },
+    { number: "AI782", source: "Mangalore", destination: "mathura", seats: 30 },
+    { number: "AI289", source: "Mangalore", destination: "Ayodhya", seats: 30 }
+];
+
+// Function to populate flight details dynamically
+function populateFlightDetails() {
+    const tableBody = document.getElementById('flight-data');
+    flightDetails.forEach(flight => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${flight.number}</td>
+            <td>${flight.source}</td>
+            <td>${flight.destination}</td>
+            <td>${flight.seats}</td>
+            <td><button class="book-btn" onclick="bookSeat('${flight.number}')">Book</button></td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Function to handle booking seats
+function bookSeat(flightNumber) {
+    window.location.href = "bookflight.html"; 
+}
+
+// Populate flight details on page load
+window.onload = populateFlightDetails;
+
+</script>
+</html>

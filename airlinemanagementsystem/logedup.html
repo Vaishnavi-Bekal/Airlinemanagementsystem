@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWay Airlines - Book Your Flight</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <style>
+        /* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #0070f3;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #005ad1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 112, 243, 0.2);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #0070f3;
+    border: 1px solid #0070f3;
+}
+
+.btn-outline:hover {
+    background-color: #f0f7ff;
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+
+/* Header Styles */
+header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: #0070f3;
+}
+
+.logo span {
+    font-weight: 300;
+    color: #333;
+}
+
+.main-nav {
+    display: flex;
+}
+
+.main-nav li {
+    margin: 0 15px;
+}
+
+.main-nav a {
+    color: #555;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+.main-nav a:hover {
+    color: #0070f3;
+}
+
+.main-nav a.active {
+    color: #0070f3;
+}
+
+.main-nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #0070f3;
+}
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 80px 0 40px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Search Box */
+.search-box {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.trip-type {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.radio-container {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.radio-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.radio-container input:checked ~ .checkmark {
+    background-color: #0070f3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radio-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.radio-container .checkmark:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-with-icon input,
+.input-with-icon select {
+    width: 100%;
+    padding: 12px 12px 12px 35px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.input-with-icon input:focus,
+.input-with-icon select:focus {
+    outline: none;
+    border-color: #0070f3;
+    box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}
+
+.search-btn {
+    grid-column: 1 / -1;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+/* Features Section */
+.features {
+    padding: 60px 0;
+    background-color: white;
+}
+
+.features .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    color: #0070f3;
+    margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.feature-item p {
+    color: #666;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.section-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Destinations Section */
+.destinations {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.destination-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.destination-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destination-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.destination-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.destination-price {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: #0070f3;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.destination-info {
+    padding: 20px;
+}
+
+.destination-info h3 {
+    margin-bottom: 5px;
+}
+
+.destination-info p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.view-all {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Deals Section */
+.deals {
+    padding: 60px 0;
+    background-color: white;
+}
+
+.deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.deal-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 25px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.deal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.deal-badge {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background-color: #ff6b6b;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.deal-content h3 {
+    margin: 15px 0 10px;
+}
+
+.deal-content p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.deal-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deal-meta span {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.deal-meta i {
+    margin-right: 5px;
+}
+
+/* App Promo Section */
+.app-promo {
+    padding: 60px 0;
+    background-color: #f0f7ff;
+}
+
+.app-promo .container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.app-content {
+    flex: 1;
+    min-width: 300px;
+    padding-right: 40px;
+}
+
+.app-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.app-content p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.app-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.app-btn {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.app-btn:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+}
+
+.app-btn i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.app-btn span {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-btn small {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.app-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.app-image img {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Newsletter Section */
+.newsletter {
+    padding: 60px 0;
+    background-color: #0070f3;
+    color: white;
+}
+
+.newsletter-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.newsletter-content p {
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+}
+
+.newsletter-form button {
+    border-radius: 0 4px 4px 0;
+    padding: 0 25px;
+    background-color: #005ad1;
+}
+
+.newsletter-form button:hover {
+    background-color: #004db1;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #ddd;
+    padding: 60px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column h3 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.footer-column h4 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.footer-column p {
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: #0070f3;
+    transform: translateY(-3px);
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    opacity: 1;
+    color: #0070f3;
+    padding-left: 5px;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.contact-info li i {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+}
+
+.payment-methods i {
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .main-nav {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .app-content {
+        padding-right: 0;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    
+    .app-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .user-actions {
+        display: none;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-form input {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .newsletter-form button {
+        border-radius: 4px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        padding: 60px 0 30px;
+    }
+    
+    .search-box {
+        padding: 15px;
+    }
+    
+    .trip-type {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .destination-grid,
+    .deals-grid {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>SkyWay<span>Airlines</span></h1>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="bookflight.html">book-flight</a></li>
+                    <li><a href="cancelflight.html">cancel-flight</a></li>
+                    <li><a href="flightinfo.html">flight-info</a></li>
+                    <li><a href="journeydetails.html">journey-details</a></li>
+                  <!--  <li><a href="addcustomer.html">addcustomer</a></li>-->
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+           
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Explore the World with SkyWay</h2>
+                <p>Find and book your perfect flight at the best prices</p>
+            </div>
+        </div></section>
+    <section class="features">
+        <div class="container">
+            <div class="feature-item">
+                <i class="fas fa-tag"></i>
+                <h3>Best Price Guarantee</h3>
+                <p>Find a lower price? We'll match it and give you an extra 10% off.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-plane"></i>
+                <h3>500+ Airlines</h3>
+                <p>Compare prices from all major airlines and travel providers.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-headset"></i>
+                <h3>24/7 Support</h3>
+                <p>Our customer service team is available around the clock.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure Booking</h3>
+                <p>Your payment and personal information are always protected.</p>
+            </div>
+        </div>
+    </section>
+
+
+    
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>SkyWay Airlines</h3>
+                    <p>Making the sky accessible to everyone with affordable and comfortable flights worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Search Flights</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                        <li><a href="#">Vacation Packages</a></li>
+                        <li><a href="#">Group Bookings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Airport Road, Skyville</li>
+                        <li><i class="fas fa-phone-alt"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@skywayairlines.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SkyWay Airlines. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-discover"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Customer</title>
+
+</head>
+<body>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: #0f4c81;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.add-customer-panel {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h2 {
+    color: #0f4c81;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"], input[type="radio"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.gender-options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit-btn {
+  /* Button Styles */
+  background: linear-gradient(135deg, #0066cc, #80c8ff); /* Gradient Background */
+  color: #ffffff; /* Text color */
+  font-size: 18px; /* Larger text */
+  font-weight: bold; /* Emphasize the text */
+  padding: 12px 25px; /* Comfortable size */
+  border: none; /* Remove border */
+  border-radius: 25px; /* Rounded corners for a pill-shaped design */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: all 0.4s ease-in-out; /* Smooth transition */
+  cursor: pointer; /* Pointer effect on hover */
+}
+
+.submit-btn:hover {
+  /* Hover Effects */
+  background: linear-gradient(135deg, #004080, #0066cc); /* Darker gradient */
+  transform: scale(1.2); /* Slight enlargement */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+}
+
+.submit-btn:active {
+  /* Active (pressed) State */
+  background: linear-gradient(135deg, #003366, #004080); /* More prominent darker gradient */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Reduce shadow for pressed state */
+  transform: scale(1.1); /* Slight shrink for click effect */
+}
+    </style>
+    <header class="navbar">
+        <div class="logo">Indigo Airlines</div>
+        
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            
+        </ul>
+    </header>
+    <main>
+        <section class="add-customer-panel">
+            <h2>Add Customer Details</h2>
+            <form id="customer-form" action="addcustomer.php" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter Customer Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="nationality">Nationality</label>
+                    <input type="text" id="nationality" name="nationality" placeholder="Enter Nationality" required>
+                </div>
+                <div class="form-group">
+                    <label for="aadhar">Aadhar Number</label>
+                    <input type="text" id="aadhar" name="aadhar" placeholder="Enter Aadhar Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter Address" required>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="gender-options">
+                        <label><input type="radio" name="gender" value="m" required> Male</label>
+                        <label><input type="radio" name="gender" value="f" required> Female</label>
+                        <label><input type="radio" name="gender" value="o" required> Other</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" name="phone" placeholder="Enter Phone Number" required>
+                </div>
+                <button type="submit" class="submit-btn">Save Details</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Indigo Airlines. All rights reserved.</p>
+    </footer>
+</body>
+<script>
+    document.getElementById("customer-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+      this.submit(); // Allow the form to submit
+     
+    });
+</script>
+</html>

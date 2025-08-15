@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Details</title>
+   
+    <script src="journeydetails.js" defer></script>
+</head>
+<body>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f8ff;
+}
+
+.navbar {
+    background-color: #0f4c81;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.details-panel {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h2 {
+    color: #0f4c81;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    /* Button Styles */
+    background: linear-gradient(135deg, #0066cc, #80c8ff); /* Gradient Background */
+    color: #ffffff; /* Text color */
+    font-size: 18px; /* Larger text */
+    font-weight: bold; /* Emphasize the text */
+    padding: 12px 25px; /* Comfortable size */
+    border: none; /* Remove border */
+    border-radius: 25px; /* Rounded corners for a pill-shaped design */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.4s ease-in-out; /* Smooth transition */
+    cursor: pointer; /* Pointer effect on hover */
+  }
+  
+  .btn:hover {
+    /* Hover Effects */
+    background: linear-gradient(135deg, #004080, #0066cc); /* Darker gradient */
+    transform: scale(1.2); /* Slight enlargement */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+  }
+  
+  .btn:active {
+    /* Active (pressed) State */
+    background: linear-gradient(135deg, #003366, #004080); /* More prominent darker gradient */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Reduce shadow for pressed state */
+    transform: scale(1.1); /* Slight shrink for click effect */
+  }
+
+.passenger-details {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+    </style>
+    <header class="navbar">
+        <div class="logo">skyway Airlines</div>
+     
+        <ul class="nav-links">
+            <li><a href="logedup.html">Home</a></li>
+           
+        </ul>
+    </header>
+    <main>
+        <section class="details-panel">
+            <h2>Journey Details</h2>
+            <form id="show" action="journey.php" method ="post">
+            <div class="form-group" action="journey.php" method ="post">
+                <label for="aadhar">Enter aadhar Number</label>
+                <input type="text" id="aadhar" placeholder="Enter your aadhar number">
+                <button type="submit" class="btn" >Get Details</button>
+            </div>
+            <div class="passenger-details" id="passenger-details">
+                <!-- Passenger details will be displayed here -->
+            </div>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p >&copy; 2025 Sky way Airlines. All rights reserved.</p>
+    </footer>
+</body>>
+<script>
+    document.getElementById("show").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        let aadharNumber = document.getElementById("aadhar").value;
+
+        if (!aadharNumber) {
+            alert("Please enter your Aadhar number.");
+            return;
+        }
+
+        fetch("journey.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "aadhar=" + encodeURIComponent(aadharNumber)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                document.getElementById("passenger-details").innerHTML = `
+                    <p><strong>Name:</strong> ${data.name}</p>
+                    <p><strong>Address:</strong> ${data.address}</p>
+                    <p><strong>Destination:</strong> ${data.destination}</p>
+                    <p><strong>Flight name:</strong> ${data.flight_name}</p>
+                    <p><strong>Flight Code:</strong> ${data.flight_code}</p>
+                    <p><strong>Departure Date:</strong> ${data.date_of_travel}</p>
+                `;
+                document.getElementById("passenger-details").style.display = "block";
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Flight</title>
+
+</head>
+<body>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f8ff;
+}
+
+.navbar {
+    background-color: #0f4c81;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.booking-panel {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    color: #0f4c81;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"], input[type="date"], select {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button.btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #0f4c81;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+    background-color: #0d3b68;
+}
+
+button.primary-btn {
+    margin-top: 20px;
+    background-color: #1a73e8;
+}
+
+button.primary-btn:hover {
+    background-color: #1557b6;
+}
+.login-btn {
+    /* Button Styles */
+    background: linear-gradient(135deg, #0066cc, #80c8ff); /* Gradient Background */
+    color: #ffffff; /* Text color */
+    font-size: 18px; /* Larger text */
+    font-weight: bold; /* Emphasize the text */
+    padding: 12px 25px; /* Comfortable size */
+    border: none; /* Remove border */
+    border-radius: 25px; /* Rounded corners for a pill-shaped design */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.4s ease-in-out; /* Smooth transition */
+    cursor: pointer; /* Pointer effect on hover */
+  }
+  
+  .login-btn:hover {
+    /* Hover Effects */
+    background: linear-gradient(135deg, #004080, #0066cc); /* Darker gradient */
+    transform: scale(1.2); /* Slight enlargement */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+  }
+  
+  .login-btn:active {
+    /* Active (pressed) State */
+    background: linear-gradient(135deg, #003366, #004080); /* More prominent darker gradient */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Reduce shadow for pressed state */
+    transform: scale(1.1); /* Slight shrink for click effect */
+  }
+    </style>
+    <header class="navbar">
+        <div class="logo">Indigo Airlines</div>
+        
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            
+        </ul>
+    </header>
+    <main>
+        <section class="booking-panel">
+            <h2>Book a Flight</h2>
+           
+                <form action="booking.php" id="flight-form" method="POST" >
+                <div class="form-group">
+                    <label for="aadhar">Aadhar</label>
+                    <input type="text" id="aadhar" name="aadhar" placeholder="Enter Aadhar">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label for="nationality">Nationality</label>
+                    <input type="text" id="nationality" name="nationality" placeholder="Enter Nationality">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter Address">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <input type="text" id="gender" name="gender" placeholder="Enter Gender ['m','f','o']">
+                </div>
+                <div class="form-group">
+                    <label for="source">Source</label>
+                    <select id="source" name="source">
+                        <option value="delhi">Delhi</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="bangalore">Bangalore</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <select id="destination" name="destination">
+                        <option value="delhi">Delhi</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="chennai">Chennai</option>
+                    </select>
+                   
+                </div>
+                <div class="form-group">
+                    <label for="flight-name">Flight Name</label>
+                    <input type="text" id="flight_name" name="flight_name" placeholder="Enter Flight Name">
+                </div>
+                <div class="form-group">
+                    <label for="flight-code">Flight Code</label>
+                    <input type="text" id="flight_code" name="flight_code" placeholder="Enter Flight Code">
+                </div>
+                <div class="form-group">
+                    <label for="date-of-travel">Date of Travel</label>
+                    <input type="date" id="date_of_travel" name="date_of_travel">
+                </div>
+                <button type="submit" class="login-btn" id="book-flight">Book Flight</button>
+                <button type="submit" class="login-btn" name="update">Update Booking</button>
+
+            </form>
+            
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 skyway Airlines. All rights reserved.</p>
+    </footer>
+</body>
+<script>
+    document.getElementById("flight-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+      this.submit(); // Allow the form to submit
+    });
+    document.getElementById('flight-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    alert('flight booked successfully!');
+});
+
+  </script>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airline Management System</title>
+ 
+</head>
+<body >
+  <header>
+    <style>
+      /* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;  
+  padding: 0;
+  box-sizing: border-box;
+  background-image: url('fm.png'); background-size: cover; background-repeat: no-repeat;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004080;
+  color: white;
+  padding: 10px 20px;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 50px;
+ 
+  color : white;
+}
+
+.hero h1 ,p {
+  font-size: 2.5em;
+  color:black; 
+}
+
+
+.cta-btn {
+  background-color: #004080;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.cta-btn:hover {
+  background-color: #0066cc;
+}
+
+.features {
+  text-align: center;
+  padding: 20px;
+}
+
+.Home:hover{
+  font-family: Sans-Serif;
+  font-size: 20px;
+}
+
+.about:hover{
+  font-family: Sans-Serif;
+  font-size: 20px;
+}
+
+.login:hover{
+  font-family: Sans-Serif;
+  font-size: 20px;
+}
+
+.Contact:hover{
+  font-family: Sans-Serif;
+  font-size: 20px;
+}
+
+.feature-card,.airline{
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
+  background: rgba(172, 201, 255, 0.45); /* Adjusting transparency */
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.feature-card,.airline:hover{
+  transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+  text-align: center;
+  padding: 0.5px;
+  color: white;
+  background: rgba(172, 201, 255, 0.45); /* Adjusting transparency */
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.logo {
+  /* Button Styles */
+  color: #ffffff; /* Text color */
+  font-size: 18px; /* Larger text */
+  font-weight: bold; /* Emphasize the text */
+  padding: 12px 25px; /* Comfortable size */
+  border: none; /* Remove border */
+  border-radius: 25px; /* Rounded corners for a pill-shaped design */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: all 0.4s ease-in-out; /* Smooth transition */
+  cursor: pointer; /* Pointer effect on hover */
+}
+
+.logo:hover {
+  /* Hover Effects */
+  background: linear-gradient(135deg, #004080, #0066cc); /* Darker gradient */
+  transform: scale(1.2); /* Slight enlargement */
+  box-shadow: 0 12px 20px rgba(107, 137, 201, 0.3); /* Enhanced shadow for depth */
+}
+    </style>
+    <nav class="navbar">
+      <div class="logo">skyway Airlines</div>
+      <ul class="nav-links">
+        <li class="Home"><a href="home.html">Home</a></li>
+        <li class="about"><a href="#about">about</a></li>
+        <li class="login"><a href="login.html" target="_self">Sign up</a></li>
+        <li class="Contact"><a href="#airline">Contact</a></li>
+      </ul>
+    </nav>  
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Welcome to the Airline Management System</h1>
+      <p>Manage flights, bookings, and schedules seamlessly.</p>
+      <a href="login.html" class="cta-btn" target="_self">Explore Now</a>
+    </section>
+    <section class="features">
+      <h2>Features</h2>
+      <div class="feature-card">
+        <h3>Flight Management</h3>
+        <p>Efficiently schedule and track flights in real-time.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Passenger Booking</h3>
+        <p>Simple and user-friendly booking processes.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Customer Support</h3>
+        <p>24/7 assistance for passengers and staff.</p>
+      </div>
+
+     <hr>
+
+    <style>
+    hr {
+    height: 4px;
+    border: none; /* Simplified the styling */
+    background: linear-gradient(90deg, rgb(44, 84, 139), rgb(255, 100, 75), rgb(10, 40, 75));
+    background-size: 200%;
+    margin: 20px 0;
+    transition: all 0.4s ease-in-out;
+}
+
+hr:hover {
+    background-position: right; /* Triggers the gradient animation */
+    height: 6px; /* Increases thickness for hover effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
+}
+
+    </style>
+      <div id="about">
+          <title>Airlines Information</title>
+          <style>
+              body {
+                  font-family: Arial, sans-serif;
+                  font-size: small;
+              }
+              .airline {
+                  margin: 20px 0;
+                  padding: 10px;
+                  border: 1px solid #80a7f0;
+                  border-radius: 5px;
+                  font-size: larger;
+                  color: #0f1c35;
+              }
+              .airline h2 {
+                  margin: 0;
+                  color: #333;
+                  
+              }
+              .airline p {
+                  margin: 5px 0;
+                  font-size: medium;
+                  font-weight: 200;
+              }
+              .airline a {
+                  color: #1a73e8;
+                  text-decoration: none;
+              }
+          </style>
+      </head>
+      <body>
+          <h1>Welcome to Airline Info Hub</h1>
+          <p class="airline">Here, you'll find information about popular airlines and their websites.</p>
+          <div>
+              <h2>Indigo Airlines</h2>
+            <div class="airline" id="airline">
+              <p>Known for its excellent service and luxurious experience.</p>
+              <p>vaishnavi </p>
+              <p>email : bvaishnavi131@gmail.com</p>
+            </div>
+          </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Airline Management System. All rights reserved.</p>
+  </footer>
+</body>
+</html>

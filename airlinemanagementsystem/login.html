@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airline Reservation Sign Up</title>
+</head>
+<body>
+
+<style>
+  /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .header:hover{
+      transition:0.2s;
+      font-size: 17px;;
+  }
+  
+  .login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(rgb(111, 159, 230),rgb(230, 111, 131),rgb(211, 31, 85));
+  }
+  
+  .login-container {
+    width: 400px; /* Initial width */
+    height: 350px; /* Initial height */
+    transition: all 0.5s ease-in-out; /* Smooth transition */
+  }
+  
+  .login-container:hover {
+    width: 450px;
+    height: 380px;
+  }
+  
+  
+  .login-container h2 {
+    margin-bottom: 50px;
+    color: #002f5e;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  input:focus {
+    border-color: #004080;
+    outline: none;
+  }
+  
+  .login-btn {
+    width: 90%;
+    padding: 10px;
+    background: linear-gradient(#0a3a69,#0066cc,#80c8ff);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  
+  .login-btn {
+    /* Button Styles */
+    background: linear-gradient(135deg, #0066cc, #80c8ff); /* Gradient Background */
+    color: #ffffff; /* Text color */
+    font-size: 18px; /* Larger text */
+    font-weight: bold; /* Emphasize the text */
+    padding: 12px 25px; /* Comfortable size */
+    border: none; /* Remove border */
+    border-radius: 25px; /* Rounded corners for a pill-shaped design */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.4s ease-in-out; /* Smooth transition */
+    cursor: pointer; /* Pointer effect on hover */
+  }
+  
+  .login-btn:hover {
+    /* Hover Effects */
+    background: linear-gradient(135deg, #004080, #0066cc); /* Darker gradient */
+    transform: scale(1.2); /* Slight enlargement */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+  }
+  
+  .login-btn:active {
+    /* Active (pressed) State */
+    background: linear-gradient(135deg, #003366, #004080); /* More prominent darker gradient */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Reduce shadow for pressed state */
+    transform: scale(1.1); /* Slight shrink for click effect */
+  }
+  
+  
+</style>
+  <div class="login-container">
+    <div class="header">
+      <h2>Airline Reservation Sign Up</h2>
+    </div>
+
+    <form action="connect.php" id="loginForm" method="POST" >
+      
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+      </div>
+      <button type="submit" class="login-btn">Sign up</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+      this.submit(); // Allow the form to submit
+     
+    });
+  </script>
+</body>
+</html>
